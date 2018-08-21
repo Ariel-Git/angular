@@ -1,0 +1,6 @@
+<p>Enter your Name: <input type="text" class="form-control" (input)="enableButton($event)" [(ngModel)]="userName">
+</p>
+<button (click)="onAddUserName()" [disabled]="!enableBtn" class="btn btn-primary">Add User Name</button>
+<p>
+	{{ helloMsg }}
+</p>
