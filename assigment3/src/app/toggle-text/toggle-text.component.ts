@@ -13,14 +13,14 @@ export class ToggleTextComponent implements OnInit {
   }
 
   password:string = 'tuna';
-  toggle: boolean = false;
-  clicks = [];
-  i = 1;
-  addDetails(){
-  	this.toggle = this.toggle ? false : true ;
-  	this.clicks.push(this.i);
-    this.i++;
+  toggle:boolean = false;
+  clicksTime = [];
+  niro:boolean  = false;
 
+  addDetails(){
+    this.niro = !this.niro;
+  	this.toggle = this.toggle ? false : true ;
+    this.clicksTime.push(new Date());
   }
 
   bgColor(element){
@@ -29,5 +29,12 @@ export class ToggleTextComponent implements OnInit {
   	}else{
   		return 'transparent';
   	}
+  }
+  niroTestEvent(){
+    console.log("clicked");
+   // console.log(var);
+  }
+  hi(){
+    return this.niro;
   }
 }

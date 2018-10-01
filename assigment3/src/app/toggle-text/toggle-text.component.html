@@ -1,3 +1,4 @@
   <button class="btn btn-primary" (click)="addDetails()">Display Details</button>
   <p *ngIf="toggle">password = {{ password }}</p>
-	<p *ngFor="let element of clicks" [ngClass]="{'text-white':element > 4}" [ngStyle]="{'background-color':bgColor(element)}">click number: {{ element }}</p>
+	<p *ngFor="let element of clicksTime;let i = index" [ngClass]="{'text-white':i >= 4}" [ngStyle]="{'background-color':i >= 4 ? 'blue':'transparent'}">clicked on:{{element}}</p>
+	<br>
