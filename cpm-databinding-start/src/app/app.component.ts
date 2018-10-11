@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +24,10 @@ export class AppComponent {
       name: bluePrintData.serverName,
       content: bluePrintData.serverContent
     });
+  }
+
+  onChangesFirst(){
+    this.serverElements[0]['name']="Changed!";
   }
 
 }
