@@ -3,8 +3,16 @@ import {
   OnInit, 
   Input, 
   ViewEncapsulation, 
-  ngOnChanges,
-  SipleChanges
+  OnChanges,
+  SimpleChanges,
+  DoCheck,
+  AfterContentInit,
+  AfterContentChecked,
+  AfterViewInit,
+  AfterViewChecked, 
+  OnDestroy,
+  ViewChild,
+  ElementRef
    } from '@angular/core';
 
 @Component({
@@ -14,23 +22,50 @@ import {
   encapsulation: ViewEncapsulation.Emulated /*Native - like emulated but not supported by all browsers, None don't emulate*/
 
 })
-export class ServerElementComponent implements OnInit, ngOnChanges {
+export class ServerElementComponent implements OnInit,
+ OnChanges,
+ DoCheck, 
+ AfterContentInit,
+ AfterContentChecked,
+ AfterViewInit,
+ AfterViewChecked,
+ OnDestroy {
 	//@Input() element: {type:string, name:string, content:string};
 	@Input('srvElement') element: {type:string, name:string, content:string};
   @Input() name:string;
-  constructor() { 
+  @ViewChild('heading') header: ElementRef;
+  constructor() { //1
   	console.log("constractor called!");
 
   }
-  ngOnChanges(changes:SipleChanges){
+  ngOnChanges(changes:SimpleChanges){ //2 on any time changes have been made (not for primitive varibles) 
   	console.log("ngOnchanges Called!");
     console.log(changes);
 
   }
 
-  ngOnInit() {
+  ngOnInit() { //3 every time angular called
   	console.log("ngOnInit called!");
-  	
-  }
 
+  }
+   ngDoCheck(){ //4 called on any change/action (every time angular checks what to do with na action) 
+     console.log('ngDocheck called!');
+   }
+   ngAfterContentInit(){ //5 after the componet content is embeded in app 
+     console.log("ngAfterContentInit called!");
+   }
+   ngAfterContentChecked(){ //6 after any content change changed detaction
+     console.log("ngAfterContentChecked called!");
+   }
+   ngAfterViewInit(){ //7 after the componet content is viewable 
+     console.log("ngAfterViewInit called!");
+    console.log("header content: "+this.header.nativeElement.textContent);
+     
+   }
+   ngAfterViewChecked(){ //8 after the componet content is viewable and checked
+     console.log("ngAfterViewChecked called!");
+   }
+   ngOnDestroy(){ //9 after! the component destroyed
+     console.log("ngOnDestroy called!");
+   }
 }
