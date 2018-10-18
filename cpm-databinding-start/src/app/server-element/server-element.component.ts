@@ -12,6 +12,7 @@ import {
   AfterViewChecked, 
   OnDestroy,
   ViewChild,
+  ContentChild,
   ElementRef
    } from '@angular/core';
 
@@ -20,7 +21,6 @@ import {
   templateUrl: './server-element.component.html',
   styleUrls: ['./server-element.component.css'],
   encapsulation: ViewEncapsulation.Emulated /*Native - like emulated but not supported by all browsers, None don't emulate*/
-
 })
 export class ServerElementComponent implements OnInit,
  OnChanges,
@@ -34,6 +34,7 @@ export class ServerElementComponent implements OnInit,
 	@Input('srvElement') element: {type:string, name:string, content:string};
   @Input() name:string;
   @ViewChild('heading') header: ElementRef;
+  @ContentChild('contentParagraph') paragraph: ElementRef;
   constructor() { //1
   	console.log("constractor called!");
 
@@ -46,6 +47,7 @@ export class ServerElementComponent implements OnInit,
 
   ngOnInit() { //3 every time angular called
   	console.log("ngOnInit called!");
+    console.log("Text content of paragraph:" + this.paragraph.nativeElement.textContent);
 
   }
    ngDoCheck(){ //4 called on any change/action (every time angular checks what to do with na action) 
@@ -53,9 +55,12 @@ export class ServerElementComponent implements OnInit,
    }
    ngAfterContentInit(){ //5 after the componet content is embeded in app 
      console.log("ngAfterContentInit called!");
+    console.log("Text content of paragraph:" + this.paragraph.nativeElement.textContent);
+
    }
    ngAfterContentChecked(){ //6 after any content change changed detaction
      console.log("ngAfterContentChecked called!");
+
    }
    ngAfterViewInit(){ //7 after the componet content is viewable 
      console.log("ngAfterViewInit called!");
