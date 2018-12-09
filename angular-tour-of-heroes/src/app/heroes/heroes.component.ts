@@ -13,7 +13,9 @@ export class HeroesComponent implements OnInit {
   		id:1,
   		name:'windstorm'
   		}
-
+onSelect(hero:Hero): void {
+  this.selectedHero = hero;
+}
   constructor() { 
   	//console.log(this.hero);
   }
